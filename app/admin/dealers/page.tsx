@@ -267,11 +267,11 @@ export default function AdminDealersPage() {
               key={`skeleton-${index}`}
               className="grid gap-4 md:grid-cols-[2fr_1fr_1fr_1fr_auto]"
             >
-              <Skeleton className="h-10 rounded-lg bg-white/10" />
-              <Skeleton className="h-10 rounded-lg bg-white/10" />
-              <Skeleton className="h-10 rounded-lg bg-white/10" />
-              <Skeleton className="h-10 rounded-lg bg-white/10" />
-              <Skeleton className="h-10 rounded-lg bg-white/10" />
+              <Skeleton className="" />
+              <Skeleton className="" />
+              <Skeleton className="" />
+              <Skeleton className="" />
+              <Skeleton className="" />
             </div>
           ))}
         </div>
