@@ -7,23 +7,22 @@ import {
 } from "@/lib/data";
 import { dealerSchema } from "@/lib/validators";
 
-type RouteParams = {
-  params: { id: string };
+type HandlerContext = {
+  params: { id: string } | Promise<{ id: string }>;
 };
 
 function notFound() {
   return NextResponse.json({ message: "Dealer no encontrado" }, { status: 404 });
 }
 
-export async function GET(_req: Request, { params }: RouteParams) {
+export async function GET(_req: Request, context: HandlerContext) {
+  const { id } = (await context.params) as { id: string };
   try {
-    const dealer = await getDealerById(params.id);
-    if (!dealer) {
-      return notFound();
-    }
+    const dealer = await getDealerById(id);
+    if (!dealer) return notFound();
     return NextResponse.json(dealer);
   } catch (error) {
-    console.error(`GET /api/dealers/${params.id}`, error);
+    console.error(`GET /api/dealers/${id}`, error);
     return NextResponse.json(
       { message: "No se pudo obtener el dealer" },
       { status: 500 }
@@ -31,7 +30,8 @@ export async function GET(_req: Request, { params }: RouteParams) {
   }
 }
 
-export async function PUT(req: Request, { params }: RouteParams) {
+export async function PUT(req: Request, context: HandlerContext) {
+  const { id } = (await context.params) as { id: string };
   try {
     const payload = await req.json();
     const parsed = dealerSchema.safeParse(payload);
@@ -43,16 +43,14 @@ export async function PUT(req: Request, { params }: RouteParams) {
       );
     }
 
-    const existing = await getDealerById(params.id);
-    if (!existing) {
-      return notFound();
-    }
+    const existing = await getDealerById(id);
+    if (!existing) return notFound();
 
-    const updatedDealer = await updateDealerRecord(params.id, parsed.data);
+    const updatedDealer = await updateDealerRecord(id, parsed.data);
 
     return NextResponse.json(updatedDealer);
   } catch (error) {
-    console.error(`PUT /api/dealers/${params.id}`, error);
+    console.error(`PUT /api/dealers/${id}`, error);
     return NextResponse.json(
       { message: "No se pudo actualizar el dealer" },
       { status: 500 }
@@ -60,18 +58,17 @@ export async function PUT(req: Request, { params }: RouteParams) {
   }
 }
 
-export async function DELETE(_req: Request, { params }: RouteParams) {
+export async function DELETE(_req: Request, context: HandlerContext) {
+  const { id } = (await context.params) as { id: string };
   try {
-    const dealer = await getDealerById(params.id);
-    if (!dealer) {
-      return notFound();
-    }
+    const dealer = await getDealerById(id);
+    if (!dealer) return notFound();
 
-    await deleteDealerRecord(params.id);
+    await deleteDealerRecord(id);
 
     return NextResponse.json({ success: true });
   } catch (error) {
-    console.error(`DELETE /api/dealers/${params.id}`, error);
+    console.error(`DELETE /api/dealers/${id}`, error);
     return NextResponse.json(
       { message: "No se pudo eliminar el dealer" },
       { status: 500 }
