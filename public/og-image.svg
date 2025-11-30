@@ -1,0 +1,33 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+        <linearGradient id="bg" x1="0" y1="0" x2="1200" y2="630" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stop-color="#2B0A13" />
+            <stop offset="45%" stop-color="#4E0A20" />
+            <stop offset="100%" stop-color="#0B0306" />
+        </linearGradient>
+        <radialGradient id="glow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse"
+            gradientTransform="translate(958 118) scale(640)">
+            <stop stop-color="#FF4664" stop-opacity="0.75" />
+            <stop offset="1" stop-color="#0B0306" stop-opacity="0" />
+        </radialGradient>
+    </defs>
+    <rect width="1200" height="630" fill="url(#bg)" />
+    <rect width="1200" height="630" fill="url(#glow)" />
+    <text x="80" y="240" fill="#FCE9F1" font-size="64" font-weight="600"
+        font-family="'Geist', 'Inter', 'Segoe UI', sans-serif">
+        ReySoft Multiservices
+    </text>
+    <text x="80" y="320" fill="#F4A8BA" font-size="30" font-weight="500"
+        font-family="'Geist', 'Inter', 'Segoe UI', sans-serif" letter-spacing="0.18em">
+        ECOSISTEMAS DIGITALES PARA DEALERS DOMINICANOS
+    </text>
+    <text x="80" y="410" fill="#FEEEF4" font-size="24" font-weight="400"
+        font-family="'Geist', 'Inter', 'Segoe UI', sans-serif" opacity="0.92">
+        Experiencias digitales, datos accionables y narrativa local para acelerar tus
+        concesionarios.
+    </text>
+    <text x="80" y="480" fill="#FCE9F1" font-size="22" font-weight="500"
+        font-family="'Geist', 'Inter', 'Segoe UI', sans-serif">
+        reysoft.vercel.app
+    </text>
+</svg>

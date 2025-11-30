@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
+
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { Toaster } from "@/components/ui/sonner";
+import { siteConfig } from "@/lib/site-config";
 import "./globals.css";
-import { Analytics } from "@vercel/analytics/next"
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -17,31 +19,68 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(siteConfig.url),
   title: {
-    default:
-      "ReySoft Multiservices | Ecosistemas digitales para dealers dominicanos",
-    template: "%s | ReySoft Multiservices",
+    default: `${siteConfig.name} | ${siteConfig.tagline}`,
+    template: `%s | ${siteConfig.name}`,
   },
-  description:
-    "ReySoft Multiservices impulsa redes de concesionarios dominicanos con experiencias digitales, datos accionables y narrativa local.",
-  metadataBase: new URL("https://reysoft.do"),
-  keywords: [
-    "dealers",
-    "concesionarios",
-    "autos",
-    "República Dominicana",
-    "transformación digital",
-    "marketing automotriz",
-  ],
+  description: siteConfig.description,
+  applicationName: siteConfig.name,
+  keywords: siteConfig.keywords,
+  category: "business",
+  generator: "Next.js 16",
+  authors: [{ name: siteConfig.name, url: siteConfig.url }],
+  creator: siteConfig.name,
+  publisher: siteConfig.name,
+  alternates: {
+    canonical: "/",
+    languages: {
+      "es-DO": "/",
+      "es-ES": "/",
+    },
+  },
   openGraph: {
-    title:
-      "ReySoft Multiservices | Ecosistemas digitales para dealers dominicanos",
-    description:
-      "Activamos vitrinas digitales y automatizaciones para redes de concesionarios en toda República Dominicana.",
-    url: "https://reysoft.do",
-    siteName: "ReySoft Multiservices",
-    locale: "es_DO",
+    title: `${siteConfig.name} · ${siteConfig.tagline}`,
+    description: siteConfig.description,
+    url: siteConfig.url,
+    siteName: siteConfig.name,
+    locale: siteConfig.locale,
     type: "website",
+    images: [
+      {
+        url: `${siteConfig.url}${siteConfig.ogImage}`,
+        width: 1200,
+        height: 630,
+        alt: `${siteConfig.name} — ${siteConfig.tagline}`,
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `${siteConfig.name} · ${siteConfig.tagline}`,
+    description: siteConfig.description,
+    images: [`${siteConfig.url}${siteConfig.ogImage}`],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
+  referrer: "origin-when-cross-origin",
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: true,
+  },
+  icons: {
+    icon: "/favicon.ico",
+    shortcut: "/favicon.ico",
   },
 };
 
