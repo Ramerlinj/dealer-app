@@ -89,11 +89,38 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const structuredData = [
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      name: siteConfig.name,
+      url: siteConfig.url,
+      logo: `${siteConfig.url}${siteConfig.ogImage}`,
+      sameAs: Object.values(siteConfig.social),
+      areaServed: "DO",
+      foundingLocation: "República Dominicana",
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      name: siteConfig.name,
+      url: siteConfig.url,
+      description: siteConfig.description,
+      inLanguage: "es-DO",
+    },
+  ];
+
   return (
     <html lang="es" className="dark">
       <body
         className={`${geistSans.variable} ${geistMono.variable} min-h-screen bg-background text-foreground antialiased`}
       >
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(structuredData),
+          }}
+        />
         <div className="relative min-h-screen bg-[radial-gradient(circle_at_top,rgba(190,13,60,0.2),transparent_55%),#0b0306]">
           <SiteHeader />
           <main className="relative mx-auto min-h-[calc(100dvh-14rem)] w-full max-w-6xl px-4 py-16">
