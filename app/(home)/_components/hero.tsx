@@ -2,17 +2,15 @@ import { motion } from "framer-motion";
 
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import Link  from "next/link";
+import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import Image from "next/image";
 
+type PropsHome = {
+  stats: { label: string; value: string }[];
+};
 
-
-type PropsHome ={
-    stats: {label: string; value: string}[]
-}
-
-export default function Hero({stats}: PropsHome) {
+export default function Hero({ stats }: PropsHome) {
   const fadeUp = {
     initial: { opacity: 0, y: 28 },
     whileInView: { opacity: 1, y: 0 },
@@ -35,13 +33,15 @@ export default function Hero({stats}: PropsHome) {
       >
         <Badge variant={"destructive"}>ReySoft Multiservices</Badge>
         <h1 className="text-balance text-4xl font-semibold tracking-tight text-rose-50 md:text-5xl">
-          Activamos tu red de concesionarios dominicanos con vitrinas digitales
-          hechas a medida.
+          Encuentra todos los dealers de República Dominicana organizados por
+          provincia. Explora nuestra red de concesionarios, compara inventarios
+          y conecta directamente con los dealers cercanos a ti.
         </h1>
         <p className="max-w-xl text-pretty text-lg text-rose-300/90">
-          Diseñamos experiencias, automatizaciones y contenidos que reflejan la
-          energía local, conectando tu inventario con compradores en Santo
-          Domingo, el Cibao y la zona Este.
+          ReySoft es un directorio digital que organiza todos los dealers de
+          vehículos de República Dominicana por provincia, permitiendo a los
+          usuarios encontrar rápidamente concesionarios confiables cerca de su
+          ubicación.
         </p>
         <div className="flex flex-wrap gap-3">
           <Button
