@@ -1,15 +1,54 @@
+import type { Metadata } from "next";
 import Image from "next/image";
+
 import { Badge } from "@/components/ui/badge";
+import { siteConfig } from "@/lib/site-config";
+
+export const metadata: Metadata = {
+  title: "Sobre ReySoft Multiservices",
+  description:
+    "Conoce al equipo dominicano detrás de la transformación digital de dealers en República Dominicana.",
+  keywords: [
+    "equipo ReySoft",
+    "estrategia digital",
+    "dealers dominicanos",
+    "marketing automotriz",
+  ],
+  alternates: {
+    canonical: "/about",
+  },
+  openGraph: {
+    title: "Sobre ReySoft Multiservices",
+    description:
+      "Estrategas y especialistas locales impulsando concesionarios en República Dominicana.",
+    url: `${siteConfig.url}/about`,
+    siteName: siteConfig.name,
+    locale: siteConfig.locale,
+    type: "website",
+    images: [
+      {
+        url: `${siteConfig.url}${siteConfig.ogImage}`,
+        width: 1200,
+        height: 630,
+        alt: `${siteConfig.name} · Sobre nosotros`,
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Sobre ReySoft Multiservices",
+    description:
+      "Conoce al equipo dominicano detrás de la transformación digital de dealers.",
+    images: [`${siteConfig.url}${siteConfig.ogImage}`],
+  },
+};
 
 export default function AboutPage() {
   return (
     <div className="grid gap-16 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
       <div className="space-y-6">
-          
-        <Badge variant={"destructive"} >
-          Nuestra historia en R.D.
-        </Badge>
-        
+        <Badge variant={"destructive"}>Nuestra historia en R.D.</Badge>
+
         <h1 className="text-balance text-3xl font-semibold text-slate-100 md:text-4xl">
           Elevamos la presencia digital de dealers dominicanos con ambición
           boutique.
